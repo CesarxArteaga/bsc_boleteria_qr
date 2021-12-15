@@ -16,6 +16,10 @@ import { useState } from 'react';
 import { Link } from "react-router-dom";
 /* import { styled } from '@mui/material/styles'; */
 import logo from '../../assets/bsc_logo.png';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
+import { styled } from '@mui/material/styles';
+import { useHistory } from "react-router-dom";
 
 const styles = {
     link: {
@@ -29,19 +33,72 @@ const pages = [
     { id: 1, title: 'Eventos', path: '/eventos' },
     { id: 2, title: 'Propietarios', path: '/propietarios' },
     { id: 3, title: 'Socios', path: '/socios' },
-    { id: 4, title: 'Hinchas', path: '/hinchas' },
+    //{ id: 4, title: 'Hinchas', path: '/hinchas' },
     { id: 5, title: 'Contacto', path: '/contacto' },
 ];
 //const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
+interface StyledTabsProps {
+    children?: React.ReactNode;
+    value: number;
+    onChange: (event: React.SyntheticEvent, newValue: number) => void;
+  }
+  
+  const StyledTabs = styled((props: StyledTabsProps) => (
+    <Tabs
+      {...props}
+      TabIndicatorProps={{ children: <span className="MuiTabs-indicatorSpan" /> }}
+    />
+  ))({
+    '& .MuiTabs-indicator': {
+      display: 'flex',
+      justifyContent: 'center',
+      backgroundColor: 'transparent',
+    },
+    '& .MuiTabs-indicatorSpan': {
+      maxWidth: 50,
+      width: '100%',
+      backgroundColor: 'yellow',
+    },
+  });
+  
+  interface StyledTabProps {
+    label: string;
+  }
+  
+  const StyledTab = styled((props: StyledTabProps) => (
+    <Tab disableRipple {...props} />
+  ))(({ theme }) => ({
+    textTransform: 'none',
+    fontWeight: theme.typography.fontWeightRegular,
+    fontSize: theme.typography.pxToRem(18),
+    marginRight: theme.spacing(1),
+    color: 'rgba(255, 255, 255, 0.7)',
+    '&.Mui-selected': {
+      color: 'yellow',
+    },
+    '&.Mui-focusVisible': {
+      backgroundColor: 'rgba(100, 95, 228, 0.32)',
+    },
+  }));
+
 const Navbar = () => {
 
+    const navigate = useHistory();
     //const [value, setValue] = useState(2);
     const [active, setActive] = useState(1);
 
     /* const handleChange = (event: React.SyntheticEvent, newValue: number) => {
         setValue(newValue);
     }; */
+
+    const [value, setValue] = useState(0);
+
+    const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+        setValue(newValue);
+        console.log(newValue)
+        navigate.push(`${pages[newValue].path}`)
+      };
 
     const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
     /* const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null); */
@@ -76,8 +133,8 @@ const Navbar = () => {
                             onClick={handleOpenNavMenu}
                             color="inherit"
                         >
-                            <MenuIcon sx={{color: 'white'}} />
-                            
+                            <MenuIcon sx={{ color: 'white' }} />
+
                         </IconButton>
                         <Menu
                             id="menu-appbar"
@@ -112,7 +169,7 @@ const Navbar = () => {
                     >
                         LOGO
                     </Typography> */}
-                    <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+                    {/* <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
 
                         {pages.map((item) => (
 
@@ -128,6 +185,22 @@ const Navbar = () => {
 
 
 
+                    </Box> */}
+                    <Box >
+                        <StyledTabs
+                            value={value}
+                            onChange={handleChange}
+                            aria-label="styled tabs example"
+                        >
+                            {/* <StyledTab label="Workflows" />
+                            <StyledTab label="Datasets" />
+                            <StyledTab label="Connections" /> */}
+                            {pages.map((item) => (
+                                <StyledTab key={item.id} label={item.title}/>
+                                   
+                            ))}
+                        </StyledTabs>
+                        {/* <Box sx={{ p: 3 }} /> */}
                     </Box>
                     {/* <Button
                                 key={item.id}

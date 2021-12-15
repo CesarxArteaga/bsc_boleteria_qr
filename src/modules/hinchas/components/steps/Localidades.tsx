@@ -62,7 +62,7 @@ const Localidades = () => {
                     </FormGroup> */}
                 </Grid>
                 <Grid item xs={12} md={6}>
-                    <img style={{ padding: '1rem' }} src={mapa} alt="mapa" />
+                    <img width="100%" style={{ padding: '1rem' }} src={mapa} alt="mapa" />
                 </Grid>
             </Grid>
         </>

@@ -52,6 +52,7 @@ const InfoSocio = (data: Response) => {
     }
 
     return (<>
+    
         <Grid container sx={{ p: 4, backgroundColor: '#1A1A1B' }}>
             <Grid item sm={12}>
                 <Typography variant="h5" className="yellow" sx={{ mb: 2 }}>Datos de Socio</Typography>

@@ -4,7 +4,7 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Navbar from './modules/layouth/Navbar';
 import PropietariosScreen from './modules/propietarios/screens/PropietariosSreen';
 import EventosScreen from './modules/eventos/screens/EventosScreen';
-import HinchasScreen from './modules/hinchas/screens/HinchasScreen';
+//import HinchasScreen from './modules/hinchas/screens/HinchasScreen';
 import SociosScreen from './modules/socios/screens/SociosScreen';
 import Contacto from './modules/contacto/screens/Contacto';
 
@@ -34,9 +34,9 @@ function App() {
             <Route path="/socios">
               <SociosScreen />
             </Route>
-            <Route path="/hinchas">
+            {/* <Route path="/hinchas">
               <HinchasScreen />
-            </Route>
+            </Route> */}
             <Route path="/contacto">
               <Contacto />
             </Route>

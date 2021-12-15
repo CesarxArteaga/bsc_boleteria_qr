@@ -12,7 +12,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { Response } from '../../../interface/Propietario.interface';
 import ButtonQR from './ButtonQR';
-
+import ButtonBeneficiario from './ButtonBeneficiario';
 
 const InfoPropietario = (response: Response) => {
     //https://nodemailqr.herokuapp.com/generateqr
@@ -56,7 +56,8 @@ const InfoPropietario = (response: Response) => {
                                     <TableRow>
                                         <TableCell>LOCALIDAD</TableCell>
                                         <TableCell align="center">CÓDIGO DE PROPIEDAD</TableCell>
-                                        <TableCell align="center">BOLETO</TableCell>
+                                        <TableCell align="center">BOLETO PROPIETARIO</TableCell>
+                                        <TableCell align="center">BOLETO BENEFICIARIO</TableCell>
 
                                     </TableRow>
                                 </TableHead>
@@ -71,6 +72,8 @@ const InfoPropietario = (response: Response) => {
                                             </TableCell>
                                             <TableCell align="center">{row.CODIGO_PROPIEDAD}</TableCell>
                                             <TableCell align="center"><ButtonQR name={response.NOMBRE || 'Desconocido'} email={ response.EMAIL!} /></TableCell>
+                                            <TableCell align="center"><ButtonBeneficiario name={response.NOMBRE || 'Desconocido'} email={ response.EMAIL!} /></TableCell>
+
                                         </TableRow>
                                     ))}
                                 </TableBody>

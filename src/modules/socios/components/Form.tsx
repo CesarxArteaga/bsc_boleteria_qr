@@ -8,7 +8,9 @@ import {
 import { useState,/*  useEffect */ } from 'react';
 import axios from 'axios';
 import InfoSocio from './InfoSocio';
+
 import { SociosResponse, Response } from '../../../interface/Socios.interface';
+import TabsSocio from './TabsSocio';
 //0912729183
 
 const Form = () => {
@@ -69,10 +71,10 @@ const Form = () => {
 
             {logged ?
                 <>
-                    { <InfoSocio {...data} /> }
-                    <div style={{ backgroundColor: '#1A1A1B', textAlign: 'center', marginBottom: '1rem', paddingBottom: '1rem', borderBottom: '5px solid yellow' }}>
+                    { <TabsSocio {...data} /> }
+                    {/* <div style={{ backgroundColor: '#1A1A1B', textAlign: 'center', marginBottom: '1rem', paddingBottom: '1rem', borderBottom: '5px solid yellow' }}>
                         <button className="btn" onClick={handleCancel}> Cancelar </button>
-                    </div>
+                    </div> */}
                 </> :
                 <Grid container sx={{ backgroundColor: '#1A1A1B', borderBottom: '5px solid yellow' }}>
                     <Grid item sm={12} md={12} sx={{ p: 2 }}>
