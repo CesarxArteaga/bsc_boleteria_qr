@@ -12,7 +12,7 @@ import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 /* import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab'; */
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 /* import { styled } from '@mui/material/styles'; */
 import logo from '../../assets/bsc_logo.png';
@@ -42,45 +42,45 @@ interface StyledTabsProps {
     children?: React.ReactNode;
     value: number;
     onChange: (event: React.SyntheticEvent, newValue: number) => void;
-  }
-  
-  const StyledTabs = styled((props: StyledTabsProps) => (
+}
+
+const StyledTabs = styled((props: StyledTabsProps) => (
     <Tabs
-      {...props}
-      TabIndicatorProps={{ children: <span className="MuiTabs-indicatorSpan" /> }}
+        {...props}
+        TabIndicatorProps={{ children: <span className="MuiTabs-indicatorSpan" /> }}
     />
-  ))({
+))({
     '& .MuiTabs-indicator': {
-      display: 'flex',
-      justifyContent: 'center',
-      backgroundColor: 'transparent',
+        display: 'flex',
+        justifyContent: 'center',
+        backgroundColor: 'transparent',
     },
     '& .MuiTabs-indicatorSpan': {
-      maxWidth: 50,
-      width: '100%',
-      backgroundColor: 'yellow',
+        maxWidth: 50,
+        width: '100%',
+        backgroundColor: 'yellow',
     },
-  });
-  
-  interface StyledTabProps {
+});
+
+interface StyledTabProps {
     label: string;
-  }
-  
-  const StyledTab = styled((props: StyledTabProps) => (
+}
+
+const StyledTab = styled((props: StyledTabProps) => (
     <Tab disableRipple {...props} />
-  ))(({ theme }) => ({
+))(({ theme }) => ({
     textTransform: 'none',
     fontWeight: theme.typography.fontWeightRegular,
     fontSize: theme.typography.pxToRem(18),
     marginRight: theme.spacing(1),
     color: 'rgba(255, 255, 255, 0.7)',
     '&.Mui-selected': {
-      color: 'yellow',
+        color: 'yellow',
     },
     '&.Mui-focusVisible': {
-      backgroundColor: 'rgba(100, 95, 228, 0.32)',
+        backgroundColor: 'rgba(100, 95, 228, 0.32)',
     },
-  }));
+}));
 
 const Navbar = () => {
 
@@ -94,11 +94,21 @@ const Navbar = () => {
 
     const [value, setValue] = useState(0);
 
+    useEffect(() => {
+        const path = window.location.pathname;
+        console.log(path);
+        pages.forEach((item,index)=>{
+            if(item.path === path){
+                setValue(index);
+            }
+        })
+    }, [])
+
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
         setValue(newValue);
         console.log(newValue)
         navigate.push(`${pages[newValue].path}`)
-      };
+    };
 
     const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
     /* const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null); */
@@ -196,8 +206,8 @@ const Navbar = () => {
                             <StyledTab label="Datasets" />
                             <StyledTab label="Connections" /> */}
                             {pages.map((item) => (
-                                <StyledTab key={item.id} label={item.title}/>
-                                   
+                                <StyledTab key={item.id} label={item.title} />
+
                             ))}
                         </StyledTabs>
                         {/* <Box sx={{ p: 3 }} /> */}

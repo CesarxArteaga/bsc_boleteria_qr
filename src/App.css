@@ -17,7 +17,10 @@
   text-transform: uppercase;
   font-weight: 700;
 }
-
+.btn-block{
+  display: block;
+  width: 100%;
+}
 .btn:hover{
   cursor: pointer;
 }
@@ -47,6 +50,27 @@
     transform: translateY(7px);
     margin-top: -1rem;
     padding: none;
+}
+
+.card-evento {
+  filter: brightness(65%);
+}
+
+.card-evento:hover {
+  cursor: pointer;
+  filter: brightness(100%);
+  transform: translateY(-1.2rem);
+  transition-duration: .3s;
+  transition-delay: .1s;
+  border: 2px solid yellow;
+}
+
+.evento:hover {
+  cursor: pointer;
+  transform: translateX(1.2rem);
+  transition-duration: .3s;
+  transition-delay: .1s;
+  border: 2px solid yellow;
 }
 
 .main-wrapper {

@@ -90,9 +90,6 @@ const Form = () => {
             {logged ?
                 <>
                     <InfoPropietario {...data} />
-                    <div style={{ backgroundColor: '#1A1A1B', textAlign: 'center', marginBottom: '1rem', paddingBottom: '1rem', borderBottom: '5px solid yellow' }}>
-                        <button className="btn" onClick={handleCancel}> Cancelar </button>
-                    </div>
                 </> :
                 <Grid container sx={{ backgroundColor: '#1A1A1B', borderBottom: '5px solid yellow' }}>
                     <Grid item sm={12} md={12} sx={{ p: 2 }}>
@@ -103,6 +100,7 @@ const Form = () => {
                                 error ? <Alert variant="filled" severity="error" sx={{ mt: 4 }}> Usuario no encontrado.</Alert> : ''
                             }
                             <TextField
+                                id='cedulapropietario'
                                 label="Cedula"
                                 value={cedula}
                                 onChange={handleChange}
